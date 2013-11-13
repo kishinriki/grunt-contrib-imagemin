@@ -63,7 +63,7 @@ module.exports = function (grunt) {
                 grunt.warn(err);
             }
 
-            grunt.log.writeln('Minified ' + this.files.length + ' ' +
+            grunt.log.ok('Minified ' + this.files.length + ' ' +
                 (this.files.length === 1 ? 'image' : 'images') +
                 chalk.gray(' (saved '  + filesize(totalSaved) + ')'));
             done();
@@ -93,12 +93,10 @@ module.exports = function (grunt) {
                 if (!grunt.file.exists(cachePath)) {
                     grunt.file.copy(dest, cachePath);
 
-                    if (grunt.option('verbose')) {
-                        grunt.log.writeln('[caching] ' + src + ' → ' + cachePath);
-                    }
+                    grunt.verbose.writeln('[caching] ' + src + ' → ' + cachePath);
                 }
 
-                grunt.log.writeln(chalk.green('✔ ') + src + chalk.gray(' (' + savedMsg + ')'));
+                grunt.verbose.writeln(chalk.green('✔ ') + src + chalk.gray(' (' + savedMsg + ')'));
                 next();
             }
 
